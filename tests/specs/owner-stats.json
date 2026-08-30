@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Owner commands are safe when owner access is unset",
+    "steps": [
+      {
+        "send": { "text": "/stats" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Owner access isn't set up yet." } }
+        ]
+      },
+      {
+        "send": { "text": "/top_alerts" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Owner access isn't set up yet." } }
+        ]
+      }
+    ]
+  }
+]

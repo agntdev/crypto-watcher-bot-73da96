@@ -7,13 +7,19 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Configure price threshold or percentage move alert"
+              "text": "Your saved watchlist isn't available right now. Try again shortly."
             }
           }
         ],
         "send": {
           "callback": "alert:create"
         }
+      },
+      {
+        "send": { "callback": "alert:type:percent" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Send the percentage move, for example 5 for 5%." } }
+        ]
       }
     ]
   }
