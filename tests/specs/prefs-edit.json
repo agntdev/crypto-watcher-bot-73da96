@@ -7,13 +7,25 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Configure quiet hours, summary time, and cooldown settings"
+              "text": "Your saved watchlist isn't available right now. Try again shortly."
             }
           }
         ],
         "send": {
           "callback": "prefs:edit"
         }
+      },
+      {
+        "send": { "callback": "prefs:quiet" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Send quiet hours as HH:MM-HH:MM in your UTC timezone." } }
+        ]
+      },
+      {
+        "send": { "text": "bad time" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Use HH:MM-HH:MM, for example 22:00-07:00." } }
+        ]
       }
     ]
   }

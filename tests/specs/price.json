@@ -7,7 +7,7 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Check current price of specified ticker or entire watchlist"
+              "text": "Send a ticker after /price, or use /price all."
             }
           }
         ],

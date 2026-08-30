@@ -144,6 +144,21 @@ export class ChatDO {
       }
     }
 
+    // Durable application record for this chat. Feature data deliberately lives
+    // separately from grammY's recyclable conversation session.
+    if (url.pathname === "/domain") {
+      const key = `domain:${url.searchParams.get("key") === "owner" ? "owner" : "user"}`;
+      if (request.method === "GET") {
+        const v = await this.state.storage.get<unknown>(key);
+        if (v === undefined) return new Response(null, { status: 204 });
+        return Response.json(v);
+      }
+      if (request.method === "PUT") {
+        await this.state.storage.put(key, await request.json());
+        return new Response(null, { status: 204 });
+      }
+    }
+
     // Schedule a reminder + (re)arm the alarm to the earliest due one.
     if (url.pathname === "/remind" && request.method === "POST") {
       const rem = (await request.json()) as Reminder;
